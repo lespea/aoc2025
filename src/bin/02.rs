@@ -16,8 +16,26 @@ pub fn part_one(input: &str) -> Option<u64> {
     Some(sum)
 }
 
-pub fn part_two(_input: &str) -> Option<u64> {
-    None
+pub fn part_two(input: &str) -> Option<u64> {
+    let mut sum = 0;
+    let r = pcre2::bytes::Regex::new(r"^([0-9]+)\1+$").unwrap();
+
+    let mut buffer = itoa::Buffer::new();
+
+    for range in input.trim().split(',') {
+        if let Some((start_str, end_str)) = range.split_once('-') {
+            let start: u64 = start_str.parse().unwrap();
+            let end: u64 = end_str.parse().unwrap();
+
+            for n in start..=end {
+                let s = buffer.format(n);
+                if r.is_match(s.as_bytes()).unwrap() {
+                    sum += n;
+                }
+            }
+        }
+    }
+    Some(sum)
 }
 
 #[derive(Debug)]
@@ -140,6 +158,6 @@ mod tests {
     #[test]
     fn test_part_two() {
         let result = part_two(&advent_of_code::template::read_file("examples", DAY));
-        assert_eq!(result, None);
+        assert_eq!(result, Some(4174379265));
     }
 }
