@@ -2,7 +2,10 @@ default_provider = "age"
 
 [providers.age]
 type = "age"
-recipients = ["age17lxmh7tvr53knmye359ve5ltntys74sn4np2s0ysg94kxvxnp5hqmc88aw"]
+recipients = [
+    "age10w4f8vq00hf0m2yre5vkeagrgs584m4s8yez548dreuaxsm2rursxgty6a",
+    "age17lxmh7tvr53knmye359ve5ltntys74sn4np2s0ysg94kxvxnp5hqmc88aw",
+]
 
 [secrets.ADVENT_OF_CODE_SESSION]
 provider = "age"
