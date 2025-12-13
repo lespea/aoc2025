@@ -10,6 +10,12 @@ publish = false
 [lib]
 doctest = false
 
+[profile.release]
+codegen-units = 1
+lto = true
+panic = "abort"
+strip = true
+
 [profile.dhat]
 inherits = "release"
 debug = 1
